@@ -2,12 +2,20 @@ import React, { useEffect } from "react";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Grid from "@mui/material/Grid";
+import axios from "../axios";
 
 import { Post } from "../components";
 import { TagsBlock } from "../components";
 import { CommentsBlock } from "../components";
 
 export const Home = () => {
+  useEffect(() => {
+    axios
+      .get("/posts")
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
+  }, []);
+
   return (
     <>
       <Tabs
@@ -34,6 +42,7 @@ export const Home = () => {
               viewsCount={150}
               commentsCount={3}
               tags={["react", "fun", "typescript"]}
+              // isLoading={true}
               isEditable
             />
           ))}
